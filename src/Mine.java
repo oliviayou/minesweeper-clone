@@ -33,12 +33,15 @@ public class Mine {
 	 }
 	 
 	 public enum enumStatus {
-		 NONE, OPEN, MARKED
-	 };
+		 NONE, 
+		 OPEN, 
+		 MARKED;
+	 }
 	
 	 public enum enumClick {
-		 LEFT, RIGHT
-	 };
+		 LEFT, 
+		 RIGHT;
+	 }
 	
 	 public JButton button;
 	 public enumStatus status; 
@@ -76,72 +79,72 @@ public class Mine {
 			 return Color.red;
 		 }
 		 else if (minesAround == 4) {
-			 return Color.pink;
+			 return Color.cyan;
 		 }
 		 else {
 			 return Color.black;
 		 }
 	 }
 	
-		 public void Redraw() {
-			  switch (WinMines.gameStatus) {
-			  // game just started
-			  case NONE:
-				  button.setText(""); // clear text
-				  button.setIcon(null); // clear icon
-				  button.setForeground(null); // clear foreground
-				  button.setBackground(null); // clear background
-				  break;
-			
-			  // game started or completed
-			  case READY:
-			  case STARTED:
-			  case COMPLETED:
-				   switch (status) {
-				   
-					   // game has not started
-					   case NONE: 
-						    button.setText("");
-						    button.setIcon(null);
-						    button.setForeground(null);
-						    button.setBackground(null);
-						    break;
-					    
-					   case MARKED:
-						    button.setIcon(iconFlag);
-						    button.setForeground(null);
-						    button.setBackground(null);
-						    break;
-					    
-					   case OPEN:
-						    if (minesNearBy == 0) {
-						    	button.setText("");
-						    }
-					    
-					    else {
-					    	button.setText(Integer.toString(minesNearBy));
-					    }
-					    
-					    button.setIcon(null); 
-					    button.setForeground(getColor(minesNearBy));
-					    button.setBackground(Color.green); // a blank cell is green
+	 public void Redraw() {
+		  switch (WinMines.gameStatus) {
+		  // game just started
+		  case NONE:
+			  button.setText(""); // clear text
+			  button.setIcon(null); // clear icon
+			  button.setForeground(null); // clear foreground
+			  button.setBackground(null); // clear background
+			  break;
+		
+		  // game started or completed
+		  case READY:
+		  case STARTED:
+		  case COMPLETED:
+			   switch (status) {
+			   
+				   // game has not started
+				   case NONE: 
+					    button.setText("");
+					    button.setIcon(null);
+					    button.setForeground(null);
+					    button.setBackground(null);
 					    break;
-				   }
-				   
-				   break;
-			
-				  // game over - show all mines
-				  case GAMEOVER:
-					  if (isMine == true) {
-						  button.setIcon(iconMine);
-						  button.setForeground(Color.black);
-						  button.setBackground(null);
-					  }
-					  break;
+				    
+				   case MARKED:
+					    button.setIcon(iconFlag);
+					    button.setForeground(null);
+					    button.setBackground(null);
+					    break;
+				    
+				   case OPEN:
+					    if (minesNearBy == 0) {
+					    	button.setText("");
+					    }
+				    
+				    else {
+				    	button.setText(Integer.toString(minesNearBy));
+				    }
+				    
+				    button.setIcon(null); 
+				    button.setForeground(getColor(minesNearBy));
+				    button.setBackground(Color.lightGray); // open cell
+				    break;
+			   }
+			   
+			   break;
+		
+			  // game over - show all mines
+			  case GAMEOVER:
+				  if (isMine == true) {
+					  button.setIcon(iconMine);
+					  button.setForeground(Color.black);
+					  button.setBackground(null);
 				  }
-		  button.revalidate();
-		  button.repaint();
-		 }
+				  break;
+			  }
+	  button.revalidate();
+	  button.repaint();
+	 }
 	
 	 public boolean SetIsMine() {
 		 if (isMine != true) {
@@ -194,8 +197,9 @@ public class Mine {
 		  	}
 	 }
 	
-	 Icon iconFlag = new ImageIcon("flag.jpg"); 
-	 Icon iconMine = new ImageIcon("mine.png"); 
+	 Icon iconFlag = new ImageIcon(new ImageIcon("flag.png").getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
+	 Icon iconMine = new ImageIcon(new ImageIcon("mine.png").getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
+
 	
 	 private void InitMine() {
 		  button = new JButton(); 

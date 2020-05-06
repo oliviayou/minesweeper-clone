@@ -33,19 +33,19 @@ public class WinMines extends JFrame implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
 	private Container pane; 
-	 private JPanel board = new JPanel();; 
-	 final int CELL_SIZE = 30; 
+	private JPanel board = new JPanel();; 
+	final int CELL_SIZE = 30; 
 	
-	 final static int EASY_MINES_NUM = 10;
-	 final static int MEDIUM_MINES_NUM = 40;
-	 final static int HARD_MINES_NUM = 99;
+	final static int EASY_MINES_NUM = 10;
+	final static int MEDIUM_MINES_NUM = 40;
+	final static int HARD_MINES_NUM = 99;
 	
-	 final static int EASY_SIZE_ROW = 9;
-	 final static int EASY_SIZE_COL = 9;
-	 final static int MEDIUM_SIZE_ROW = 16;
-	 final static int MEDIUM_SIZE_COL = 16;
-	 final static int HARD_SIZE_ROW = 16;
-	 final static int HARD_SIZE_COL = 30;
+	final static int EASY_SIZE_ROW = 9;
+	final static int EASY_SIZE_COL = 9;
+	final static int MEDIUM_SIZE_ROW = 16;
+	final static int MEDIUM_SIZE_COL = 16;
+	final static int HARD_SIZE_ROW = 16;
+	final static int HARD_SIZE_COL = 30;
 	
 	 // initialize number of rows in easy 
 	 static int SIZE_ROW = EASY_SIZE_ROW;
@@ -59,7 +59,7 @@ public class WinMines extends JFrame implements ActionListener {
 	
 	 public enum enumGameStatus {
 		 READY, STARTED, GAMEOVER, NONE, COMPLETED
-	 };
+	 }
 	
 	 public static enumGameStatus gameStatus;
 	
@@ -140,8 +140,10 @@ public class WinMines extends JFrame implements ActionListener {
 		  while (minesNum < MINES_NUM && counter <= 10000) {
 			   int n = rand.nextInt(SIZE_ROW * SIZE_COL);
 			   int row = n / SIZE_COL;
-			   int col = n - row * SIZE_COL;
-			
+//			   int col = n - row * SIZE_COL;
+			   int col = n % SIZE_COL;
+
+			   
 			   // ensure first click opens an large area of cells
 			   if (row < r - 1 || row > r + 1 || col < c - 1 || col > c + 1) {
 				   if (mines[row][col].SetIsMine()) {
@@ -409,10 +411,10 @@ public class WinMines extends JFrame implements ActionListener {
 		  mediumBtn.addActionListener(new ActionListener() { 
 		     @Override
 		     public void actionPerformed(ActionEvent e) {
-			      SIZE_ROW = MEDIUM_SIZE_ROW;
-			      SIZE_COL = MEDIUM_SIZE_COL;
-			      MINES_NUM = MEDIUM_MINES_NUM;
-			      NewGame(); 
+				      SIZE_ROW = MEDIUM_SIZE_ROW;
+				      SIZE_COL = MEDIUM_SIZE_COL;
+				      MINES_NUM = MEDIUM_MINES_NUM;
+				      NewGame(); 
 			      }
 		     });
 		  	group.add(mediumBtn); 
