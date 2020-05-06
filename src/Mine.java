@@ -1,5 +1,5 @@
 /**
- * Minesweeper Game
+ * Mine sweeper
  * Mine class defines mine behaviour using object oriented programming
  **/
 
@@ -15,7 +15,8 @@ public class Mine {
 
 	 public static class MineInfo implements Serializable{
 		 
-		  public int row;
+		private static final long serialVersionUID = 1L;
+		public int row;
 		  public int col;
 		  public int minesNearBy;
 		  public boolean isMine;

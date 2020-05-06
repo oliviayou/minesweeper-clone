@@ -1,8 +1,9 @@
 /**
- * Minesweeper
+ * Mine sweeper Game
  * Main program to define mine class
  **/
 
+import java.applet.Applet;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -29,7 +30,7 @@ import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.border.LineBorder;
 
-public class WinMines extends JFrame implements ActionListener {
+public class WinMines /*extends JFrame*/extends Applet implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
 	private Container pane; 
@@ -99,6 +100,7 @@ public class WinMines extends JFrame implements ActionListener {
 			 // Read serialized file
 			 ObjectInputStream in = new ObjectInputStream(new FileInputStream("out.bin"));
 			 Mine.MineInfo[][] boardInfo = (Mine.MineInfo[][]) in.readObject();
+			 in.close();
 			
 			 // Restore the current board with the serialized version loaded
 			 for (int i = 0; i < SIZE_ROW; i++) {
@@ -140,9 +142,7 @@ public class WinMines extends JFrame implements ActionListener {
 		  while (minesNum < MINES_NUM && counter <= 10000) {
 			   int n = rand.nextInt(SIZE_ROW * SIZE_COL);
 			   int row = n / SIZE_COL;
-//			   int col = n - row * SIZE_COL;
 			   int col = n % SIZE_COL;
-
 			   
 			   // ensure first click opens an large area of cells
 			   if (row < r - 1 || row > r + 1 || col < c - 1 || col > c + 1) {
