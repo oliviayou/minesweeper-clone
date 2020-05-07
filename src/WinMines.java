@@ -3,7 +3,6 @@
  * Main program to define mine class
  **/
 
-import java.applet.Applet;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -30,7 +29,7 @@ import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.border.LineBorder;
 
-public class WinMines /*extends JFrame*/extends Applet implements ActionListener {
+public class WinMines extends JFrame implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
 	private Container pane; 
