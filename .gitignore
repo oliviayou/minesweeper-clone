@@ -1,0 +1,14 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Eclipse / VSCode
+.classpath
+.project
+.settings/
+.vscode/
+
+# Mac
+.DS_Store
